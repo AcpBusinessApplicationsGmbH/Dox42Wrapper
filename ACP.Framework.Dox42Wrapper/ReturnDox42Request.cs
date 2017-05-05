@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Dox42;
 
-namespace ACP.Dox42Wrapper
+namespace ACP.Framework.Dox42Wrapper
 {
-   public class ReturnDox42Request :OutputStrategy
+   public class ReturnOutputStrategy : OutputStrategy
     {
         private List<KeyValue> _returnActionParams;
         public enum Dox42ReturnFormat
@@ -17,7 +17,7 @@ namespace ACP.Dox42Wrapper
             xlsx,
             pdf
         }
-        public ReturnDox42Request()
+        public ReturnOutputStrategy()
         {
             _returnActionParams = new List<KeyValue>();
         }
@@ -33,18 +33,6 @@ namespace ACP.Dox42Wrapper
                 });
             }
         }
-        public String Mode
-        {
-            set
-            {
-                _returnActionParams.Add(new KeyValue()
-                {
-                    ParamName = "Mode",
-                    Value = value
-                });
-            }
-        }
-
 
         public override void FillOutputRequestParmaeter(Dox42.GeneratorServiceMsg serviceMsg)
         {

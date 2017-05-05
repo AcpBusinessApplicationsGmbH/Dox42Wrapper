@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ACP.Dox42Wrapper
+namespace ACP.Framework.Dox42Wrapper
 {
     public abstract class OutputStrategy
     {

@@ -3,25 +3,29 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
-using ACP.Dox42Wrapper;
 using System.Threading.Tasks;
 
-namespace Dox42Wrapper
+namespace ACP.Framework.Dox42Wrapper
 {
     /// <summary>
     /// handle dox42 calls
     /// </summary>
     public class Dox42Server
     {
-      
+        private string _dox42Uri;
 
         /// <summary>
         /// Initialize a new Dox42Server
         /// </summary>
-        public Dox42Server()
+        public Dox42Server(string dox42Uri)
         {
+            if (dox42Uri == null)
+                throw new ArgumentNullException(nameof(dox42Uri));
 
+            this._dox42Uri = dox42Uri;
         }
 
         /// <summary>
@@ -31,14 +35,15 @@ namespace Dox42Wrapper
         /// <returns></returns>
         public Dox42Response ExecuteReport(Dox42Request request)
         {
- 
-                Dox42Response response = new Dox42Response();
-                response.Request = request;
+
+            Dox42Response response = new Dox42Response();
+            response.Request = request;
 
             try
             {
-                Dox42.Dox42ServiceSoapClient.EndpointConfiguration epConfig = new Dox42.Dox42ServiceSoapClient.EndpointConfiguration();
-                Dox42.Dox42ServiceSoapClient client = new Dox42.Dox42ServiceSoapClient(epConfig);
+                Binding binding = new BasicHttpBinding(BasicHttpSecurityMode.None);
+                EndpointAddress epAdress = new EndpointAddress(_dox42Uri);
+                Dox42.Dox42ServiceSoapClient client = new Dox42.Dox42ServiceSoapClient(binding, epAdress);
 
                 var serviceMessage = new Dox42.GeneratorServiceMsg();
 
@@ -54,7 +59,7 @@ namespace Dox42Wrapper
                     serviceResponse = client.GenerateSpreadSheetAsync(serviceMessage).Result;
                 }
 
-                if (serviceResponse != null && serviceResponse.ResultMessage=="OK")
+                if (serviceResponse != null && serviceResponse.ResultMessage == "OK")
                 {
                     response.Success = true;
                     response.Message = "Report successfully created!";

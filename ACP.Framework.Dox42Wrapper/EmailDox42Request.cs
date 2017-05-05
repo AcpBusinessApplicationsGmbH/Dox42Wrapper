@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Dox42Wrapper;
 
-namespace ACP.Dox42Wrapper
+namespace ACP.Framework.Dox42Wrapper
 {
-    public class EmailDox42Request :OutputStrategy
+    public class EmailOutputStrategy : OutputStrategy
     {
         private List<Dox42.KeyValue> _returnActionParams;
         public enum Dox42EmailMode
@@ -15,7 +14,7 @@ namespace ACP.Dox42Wrapper
             HtmlEMail,
             Attachment
         }
-        public EmailDox42Request()
+        public EmailOutputStrategy()
         {
             _returnActionParams = new List<Dox42.KeyValue>();
         }

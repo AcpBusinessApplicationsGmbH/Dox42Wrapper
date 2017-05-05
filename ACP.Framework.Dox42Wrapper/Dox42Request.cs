@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Dox42Wrapper;
 
-namespace ACP.Dox42Wrapper
+namespace ACP.Framework.Dox42Wrapper
 {
     public class Dox42Request
     {

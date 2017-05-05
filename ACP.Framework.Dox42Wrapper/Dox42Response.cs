@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ACP.Dox42Wrapper;
 
-namespace Dox42Wrapper
+namespace ACP.Framework.Dox42Wrapper
 {
     /// <summary>
     /// A responseklasse. The object contains all necessary infos about the dox42 response
