@@ -59,6 +59,7 @@ namespace UnitTests.Tests
         //
         #endregion
 
+        [Ignore]
         [TestMethod]
         public void TestMethod1()
         {
