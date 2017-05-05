@@ -2,7 +2,7 @@
 
 ## Sample
 ```cs
-var server = new Dox42Server("http://sviefastboxtsk1:4242/Dox42Service.asmx");
+var server = new Dox42Server("http://servername:4242/Dox42Service.asmx");
 
 var outputStrategy = new ReturnOutputStrategy();
 outputStrategy.Format = ReturnOutputStrategy.Dox42ReturnFormat.docx;
