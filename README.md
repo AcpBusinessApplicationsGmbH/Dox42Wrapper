@@ -1,5 +1,6 @@
 # Dox42Wrapper
 Dox42Wrapper is a simple library for C# to abstract away the SOAP service of *dox42 Server*.
+It is compiled with .NET Standard 1.2 and can be used with .NET Core >= 1.0 and .NET Framework >= 4.5.1 and so on.
 
 dox42 itself is a awesome reportgenarator which allows you to design your reports easily in Microsoft Word or Excel. The best on it is, that you can combine many datasources like SQL Server, XML, Webservices, ...
 More infos about can be found at: http://www.dox42.com
