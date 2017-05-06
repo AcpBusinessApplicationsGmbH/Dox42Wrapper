@@ -22,7 +22,18 @@ namespace UnitTests.Tests
             Assert.AreEqual(svcMsg.PostGenActions[0].ActionName, "ReturnAction");
             Assert.AreEqual(svcMsg.PostGenActions[0].Params[0].ParamName, "Format");
             Assert.AreEqual(svcMsg.PostGenActions[0].Params[0].Value, "docx");
+        }
 
+        [TestMethod]
+        public void ReturnOutputStrategy_FillOutputRequestParameter_WithNull_ThrowsException()
+        {
+            var request = new ReturnOutputStrategy();
+            request.Format = ReturnOutputStrategy.Dox42ReturnFormat.docx;
+
+            Assert.ThrowsException<ArgumentNullException>(() =>
+            {
+                request.FillOutputRequestParmaeter(null);
+            });
 
         }
     }

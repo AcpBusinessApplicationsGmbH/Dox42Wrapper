@@ -3,6 +3,8 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ACP.Framework.Dox42Wrapper;
+using Moq;
+using Dox42;
 
 namespace UnitTests.Tests
 {
@@ -59,11 +61,20 @@ namespace UnitTests.Tests
         //
         #endregion
 
-        [Ignore]
         [TestMethod]
-        public void TestMethod1()
+        public void Dox42Server_ExecuteReport_WithSoapCallSucceeded()
         {
-            var server = new Dox42Server("http://sviefastboxtsk1:4242/Dox42Service.asmx");
+            var svcResponse = new GeneratorServiceResponse();
+            svcResponse.ResultMessage = "OK";
+            Mock<IDox42SoapService> dox42SoapServiceMoq = new Mock<IDox42SoapService>();
+            dox42SoapServiceMoq
+                .Setup(o => o.GenerateDocumentAsync(It.IsAny<GeneratorServiceMsg>()))
+                .Returns(svcResponse);
+            dox42SoapServiceMoq
+                .Setup(o => o.GenerateSpreadSheetAsync(It.IsAny<GeneratorServiceMsg>()))
+                .Returns(svcResponse);
+
+            var server = new Dox42Server(dox42SoapServiceMoq.Object);
 
             var outputStrategy = new ReturnOutputStrategy();
             outputStrategy.Format = ReturnOutputStrategy.Dox42ReturnFormat.docx;
@@ -73,6 +84,7 @@ namespace UnitTests.Tests
             var response = server.ExecuteReport(request);
 
 
+            Assert.IsTrue(response.Success);
         }
     }
 }

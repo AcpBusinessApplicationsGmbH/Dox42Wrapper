@@ -36,7 +36,8 @@ namespace ACP.Framework.Dox42Wrapper
 
         public override void FillOutputRequestParmaeter(Dox42.GeneratorServiceMsg serviceMsg)
         {
-        
+            if (serviceMsg == null)
+                throw new ArgumentNullException(nameof(serviceMsg));
 
             var postGenActions = new List<PostGenAction>
             {

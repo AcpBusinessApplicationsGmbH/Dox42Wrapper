@@ -15,17 +15,17 @@ namespace ACP.Framework.Dox42Wrapper
     /// </summary>
     public class Dox42Server
     {
-        private string _dox42Uri;
+        private IDox42SoapService _soapSvc;
 
         /// <summary>
         /// Initialize a new Dox42Server
         /// </summary>
-        public Dox42Server(string dox42Uri)
+        public Dox42Server(IDox42SoapService dox42SoapSvc)
         {
-            if (dox42Uri == null)
-                throw new ArgumentNullException(nameof(dox42Uri));
+            if (dox42SoapSvc == null)
+                throw new ArgumentNullException(nameof(dox42SoapSvc));
 
-            this._dox42Uri = dox42Uri;
+            _soapSvc = dox42SoapSvc;
         }
 
         /// <summary>
@@ -41,9 +41,6 @@ namespace ACP.Framework.Dox42Wrapper
 
             try
             {
-                Binding binding = new BasicHttpBinding(BasicHttpSecurityMode.None);
-                EndpointAddress epAdress = new EndpointAddress(_dox42Uri);
-                Dox42.Dox42ServiceSoapClient client = new Dox42.Dox42ServiceSoapClient(binding, epAdress);
 
                 var serviceMessage = new Dox42.GeneratorServiceMsg();
 
@@ -52,11 +49,11 @@ namespace ACP.Framework.Dox42Wrapper
                 Dox42.GeneratorServiceResponse serviceResponse = null;
                 if (request.Operation == Dox42Request.Dox42Operation.GenerateDocument)
                 {
-                    serviceResponse = client.GenerateDocumentAsync(serviceMessage).Result;
+                    serviceResponse = _soapSvc.GenerateDocumentAsync(serviceMessage);
                 }
                 else
                 {
-                    serviceResponse = client.GenerateSpreadSheetAsync(serviceMessage).Result;
+                    serviceResponse = _soapSvc.GenerateSpreadSheetAsync(serviceMessage);
                 }
 
                 if (serviceResponse != null && serviceResponse.ResultMessage == "OK")
