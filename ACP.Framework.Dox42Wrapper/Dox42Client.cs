@@ -13,14 +13,14 @@ namespace ACP.Framework.Dox42Wrapper
     /// <summary>
     /// handle dox42 calls
     /// </summary>
-    public class Dox42Server
+    public class Dox42Client
     {
         private IDox42SoapService _soapSvc;
 
         /// <summary>
         /// Initialize a new Dox42Server
         /// </summary>
-        public Dox42Server(IDox42SoapService dox42SoapSvc)
+        public Dox42Client(IDox42SoapService dox42SoapSvc)
         {
             if (dox42SoapSvc == null)
                 throw new ArgumentNullException(nameof(dox42SoapSvc));

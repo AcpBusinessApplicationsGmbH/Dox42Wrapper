@@ -9,7 +9,7 @@ More infos about can be found at: http://www.dox42.com
 ```cs
 
 //Create the client
-var server = new Dox42Server(new Dox42SoapService("http://servername:4242/Dox42Service.asmx"));
+var client = new Dox42Client(new Dox42SoapService("http://servername:4242/Dox42Service.asmx"));
 
 //Choose output strategy. In this case it is a Dox42 return action to receive a docx
 var outputStrategy = new ReturnOutputStrategy();
@@ -21,6 +21,6 @@ request.DocTemplate = @"c:\templatepath\document.docx";
 request.AddInputParameters("parameter1", "Testparameter");
 
 //finaly fire the request
-var response = server.ExecuteReport(request);
+var response = client.ExecuteReport(request);
 
 ```

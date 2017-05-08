@@ -74,7 +74,7 @@ namespace UnitTests.Tests
                 .Setup(o => o.GenerateSpreadSheetAsync(It.IsAny<GeneratorServiceMsg>()))
                 .Returns(svcResponse);
 
-            var server = new Dox42Server(dox42SoapServiceMoq.Object);
+            var server = new Dox42Client(dox42SoapServiceMoq.Object);
 
             var outputStrategy = new ReturnOutputStrategy();
             outputStrategy.Format = ReturnOutputStrategy.Dox42ReturnFormat.docx;
