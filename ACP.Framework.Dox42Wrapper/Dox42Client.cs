@@ -61,6 +61,7 @@ namespace ACP.Framework.Dox42Wrapper
                     response.Success = true;
                     response.Message = "Report successfully created!";
                     response.Filename = Path.GetFileNameWithoutExtension(request.DocTemplate);
+                    response.File = serviceResponse.GeneratedDocs[0].Bytes;
                 }
                 else
                 {
