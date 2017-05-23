@@ -3,7 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageId>ACP.Framework.Dox42Wrapper</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Thomas Gsell</Authors>
+    <Description>Dox42Wrapper is a simple library for C# to abstract away the SOAP service of dox42 Server. It is compiled with .NET Standard 1.2 and can be used with .NET Core >= 1.0 and .NET Framework >= 4.5.1 and so on.</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <Copyright>Copyright 2016 (c) Contoso Corporation. All rights reserved.</Copyright>
+    <PackageTags>dox42 soap webapi dox42server report</PackageTags>
   </PropertyGroup>
+ 
 
   <ItemGroup>
     <PackageReference Include="System.ServiceModel.Duplex" Version="4.3.0" />
